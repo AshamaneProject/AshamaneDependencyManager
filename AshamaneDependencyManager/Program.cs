@@ -17,7 +17,7 @@ namespace AshamaneDependencyManager
                 String githubProject    = "";
                 String action           = "";
                 // If no directory specified, we expect to be in AshamaneCore/Contrib/adm
-                String directory        = Directory.GetCurrentDirectory() + "../..";
+                String directory        = Directory.GetCurrentDirectory() + "/../..";
 
                 if (args.Length < 2)
                 {
@@ -27,8 +27,11 @@ namespace AshamaneDependencyManager
                     Console.WriteLine("Please enter the github module name (example : AshamaneProject/CustomScriptModule) : ");
                     githubProject = Console.ReadLine();
 
-                    Console.WriteLine("Enter the action required (add/remove) : ");
+                    Console.WriteLine("Enter the action required (ADD/remove) : ");
                     action = Console.ReadLine();
+
+                    if (action == "")
+                        action = "add";
 
                     Console.WriteLine("If in 'contrib/adm' directory, left blank. Else, enter your core root directory : ");
                     String newDirectory = Console.ReadLine();
@@ -45,6 +48,7 @@ namespace AshamaneDependencyManager
                         directory = args[2];
                 }
 
+                action = action.ToLower();
                 if (action != "add" && action != "remove")
                     throw new Exception("Invalid action");
 
@@ -77,7 +81,7 @@ namespace AshamaneDependencyManager
                     if (oldModuleDef.ModuleVersion >= moduleDef.ModuleVersion)
                     {
                         Console.WriteLine("Same or newer version of this package is already installed (" + oldModuleDef.ModuleVersion.ToString() + "), nothing to do");
-                        Console.ReadKey();
+                        ReadKeyThenExit();
                         return;
                     }
 
@@ -131,7 +135,7 @@ namespace AshamaneDependencyManager
                     ScriptLoaderEditor.EditAddSC(customScriptLoaderPath, AddSC, addModule);
 
                 Console.WriteLine(moduleDef.Title + " have been successfuly " + (addModule ? "installed": "removed"));
-                Console.ReadKey();
+                ReadKeyThenExit();
             }
             catch (Exception ex)
             {
@@ -150,6 +154,13 @@ namespace AshamaneDependencyManager
             Console.WriteLine("Usage: ./adm AshamaneProject/CustomScriptModule add|remove [AshamaneCore root directory]");
             Console.WriteLine();
             Console.WriteLine("If no core directory provided, adm expect to be run from AshamaneCore/Contrib/adm");
+            ReadKeyThenExit();
+        }
+
+        static void ReadKeyThenExit()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
 
