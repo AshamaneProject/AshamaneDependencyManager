@@ -14,18 +14,18 @@ The most important part is the "module.json" containing all your module info, AD
 
 ### Install/Remove a Module
 
-Download ADM (Release link coming soon, integration to Ashamanecore soon), then you can retrieve & instal a module using a simple command
-
-You can also launch it as any other software without parameters, and a wizard will guide you throught the whole process
+ADM is integrated in AshamaneCore (you can find it at contrib/adm), just launch adm.bat, then you can retrieve & install a module following a simple three step wizard
+t
+You can also use a single command
 
 #### Install
 ```
-   ./adm AshamaneProject/CustomScriptModule add [AshamaneCore root directory]
+   dotnet AshamaneDependencyManager.dll AshamaneProject/CustomScriptModule add [AshamaneCore root directory]
 ```
 
 #### Remove
 ```
-   ./adm AshamaneProject/CustomScriptModule remove [AshamaneCore root directory]
+   dotnet AshamaneDependencyManager.dll AshamaneProject/CustomScriptModule remove [AshamaneCore root directory]
 ```
 
 If no core directory provided, adm expect to be run from AshamaneCore/Contrib/adm
