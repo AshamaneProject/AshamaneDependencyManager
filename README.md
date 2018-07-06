@@ -15,7 +15,7 @@ The most important part is the "module.json" containing all your module info, AD
 ### Install/Remove a Module
 
 ADM is integrated in AshamaneCore (you can find it at contrib/adm), just launch adm.bat, then you can retrieve & install a module following a simple three step wizard
-t
+
 You can also use a single command
 
 #### Install
